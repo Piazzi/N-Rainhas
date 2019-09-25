@@ -10,6 +10,14 @@ diagonais_principais = [0] * (numero_rainhas * 2 - 1)
 diagonais_secundarias = [0] * (numero_rainhas * 2)
 
 
+def imprimir_tabuleiro(tabuleiro):
+    for linha in range(numero_rainhas):
+        for coluna in range(numero_rainhas):
+            print(tabuleiro[linha][coluna], end=" ")
+        print()
+    print()
+
+
 # Marca ou desmarca posicoes que estao no alcance de alguma rainha no tabuleiro
 def marcar_posicoes_no_alcance(tabuleiro, linha, coluna, no_alcance):
     tabuleiro[linha][coluna] = no_alcance
@@ -27,7 +35,8 @@ def backtracking(tabuleiro, coluna, nivel):
     for linha in range(numero_rainhas):
         # Verifica se eh possivel colocar uma rainha nessa posicao
         if ((diagonais_principais[linha - coluna + numero_rainhas - 1] != 1 and
-             diagonais_secundarias[linha + coluna] != 1) and linhas[linha] != 1):
+             diagonais_secundarias[linha + coluna] != 1) and
+                linhas[linha] != 1):
 
             marcar_posicoes_no_alcance(tabuleiro, linha, coluna, 1)
 
@@ -37,14 +46,6 @@ def backtracking(tabuleiro, coluna, nivel):
             marcar_posicoes_no_alcance(tabuleiro, linha, coluna, 0)
 
     return False
-
-
-def imprimir_tabuleiro(tabuleiro):
-    for linha in range(numero_rainhas):
-        for coluna in range(numero_rainhas):
-            print(tabuleiro[linha][coluna], end=" ")
-        print()
-    print()
 
 
 def encontrar_solucao():
